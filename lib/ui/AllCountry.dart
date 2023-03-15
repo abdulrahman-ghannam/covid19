@@ -33,38 +33,43 @@ class _AllCountryState extends State<AllCountry> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("All Country"), 
+        title: Text("All Country"),
       ),
       body: (data == null && allCountryData == null)
           ? Center(
               child: FadingText(
                 'Stay safe during the pandemic...',
                 style: TextStyle(
+                  // letterSpacing: 2.0,
                   letterSpacing: 3.0,
                 ),
               ),
             )
           : ListView.builder(
-              itemCount: data.length, 
+              itemCount: data.length,
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>CountryInfo(data,index)));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CountryInfo(data, index)));
                   },
                   child: Card(
                     child: ListTile(
                       leading: Container(
-                        height: 50,      
-                        width: 70,  
+                        height: 50,
+                        width: 70,
                         color: Colors.deepPurpleAccent,
                         child: Image(
-                         fit: BoxFit.cover,
-                        image:NetworkImage(data[index]['countryInfo']['flag']),
-                      ),
+                          fit: BoxFit.cover,
+                          image:
+                              NetworkImage(data[index]['countryInfo']['flag']),
+                        ),
                       ),
                       title: Text(data[index]['country']),
                       subtitle: Text("Total Cases"),
-                      trailing: Text("${data[index]['cases']}"), 
+                      trailing: Text("${data[index]['cases']}"),
                     ),
                   ),
                 );
